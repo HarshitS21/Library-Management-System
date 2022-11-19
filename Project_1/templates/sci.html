@@ -1,0 +1,68 @@
+{%extends 'base.html'%}
+{%block title%}Computer Science Books{%endblock title%}
+{%block body%}
+{% load static %}
+<link rel="stylesheet" href="{% static 'carousel.css' %}">
+<div class="container marketing">
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><img src='/media/{{book.3.image}}' class="img-thumbnail rounded mx-auto d-block" style="margin-top:-120px;height:272px;width:202px" alt="..."></svg>
+          <h3 class="fw-normal">{{book.3.book_name}}</h3>
+          <p>Book ISBN-{{book.3.book_isbn}}</p>
+          <p style="margin-top:-10px">Publishing Date-{{book.3.pub_date}}</p>
+          <p style="margin-top:-10px">{{book.3.book_des}}</p>
+          <p style="margin-top:-10px">Rental Price-{{book.3.book_price}}Rs./Day</p>
+          <p><a class="btn btn-secondary" href="#">Buy On Rent &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><img src='/media/{{book.4.image}}' class="img-thumbnail rounded mx-auto d-block" style="margin-top:-120px;height:272px;width:202px" alt="..."></svg>
+          <h3 class="fw-normal">{{book.4.book_name}}</h3>
+          <p>Book ISBN-{{book.4.book_isbn}}</p>
+          <p style="margin-top:-10px">Publishing Date-{{book.4.pub_date}}</p>
+          <p style="margin-top:-10px">{{book.4.book_des}}</p>
+          <p style="margin-top:-10px">Rental Price-{{book.4.book_price}}Rs./Day</p>
+          <p><a class="btn btn-secondary" href="#">Buy On Rent &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><img src='/media/{{book.6.image}}' class="img-thumbnail rounded mx-auto d-block" style="margin-top:-120px;height:272px;width:202px" alt="..."></svg>
+          <h3 class="fw-normal">{{book.6.book_name}}</h3>
+          <p>Book ISBN-{{book.6.book_isbn}}</p>
+          <p style="margin-top:-10px">Publishing Date-{{book.6.pub_date}}</p>
+          <p style="margin-top:-10px">{{book.6.book_des}}</p>
+          <p style="margin-top:-10px">Rental Price-{{book.6.book_price}}Rs./Day</p>
+          <p><a class="btn btn-secondary" href="#">Buy On Rent &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+      <hr>
+      <div class="row">
+        <div class="col-lg-4">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><img src='/media/{{book.7.image}}' class="img-thumbnail rounded mx-auto d-block" style="margin-top:-120px;height:272px;width:202px" alt="..."></svg>
+          <h3 class="fw-normal">{{book.7.book_name}}</h3>
+          <p>Book ISBN-{{book.7.book_isbn}}</p>
+          <p style="margin-top:-10px">Publishing Date-{{book.7.pub_date}}</p>
+          <p style="margin-top:-10px">{{book.7.book_des}}</p>
+          <p style="margin-top:-10px">Rental Price-{{book.7.book_price}}Rs./Day</p>
+          <p><a class="btn btn-secondary" href="#">Buy On Rent &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><img src='/media/{{book.8.image}}' class="img-thumbnail rounded mx-auto d-block" style="margin-top:-120px;height:272px;width:202px" alt="..."></svg>
+          <h3 class="fw-normal">{{book.8.book_name}}</h3>
+          <p>Book ISBN-{{book.8.book_isbn}}</p>
+          <p style="margin-top:-10px">Publishing Date-{{book.8.pub_date}}</p>
+          <p style="margin-top:-10px">{{book.8.book_des}}</p>
+          <p style="margin-top:-10px">Rental Price-{{book.8.book_price}}Rs./Day</p>
+          <p><a class="btn btn-secondary" href="#">Buy On Rent &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><img src='/media/{{book.5.image}}' class="img-thumbnail rounded mx-auto d-block" style="margin-top:-120px;height:272px;width:202px" alt="..."></svg>
+          <h3 class="fw-normal">{{book.5.book_name}}</h3>
+          <p>Book ISBN-{{book.5.book_isbn}}</p>
+          <p style="margin-top:-10px">Publishing Date-{{book.5.pub_date}}</p>
+          <p style="margin-top:-10px">{{book.5.book_des}}</p>
+          <p style="margin-top:-10px">Rental Price-{{book.5.book_price}}Rs./Day</p>
+          <p><a class="btn btn-secondary" href="#">Buy On Rent &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+</div>
+{%endblock body%}
