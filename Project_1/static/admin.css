@@ -7,11 +7,6 @@
     box-sizing: border-box;
 }
 
-body {
-    background: #272727;
-    font-family: "Montserrat", sans-serif;
-}
-
 .navMenu {
     position: absolute;
     top: 50%;

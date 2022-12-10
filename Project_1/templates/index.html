@@ -66,30 +66,36 @@
     <div class="row">
       <div class="col-lg-4">
         <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><img src='/media/{{book.0.image}}' class="img-thumbnail rounded mx-auto d-block" style="margin-top:-120px;height:272px;width:202px" alt="..."></svg>
-        <h3 class="fw-normal">{{book.0.book_name}}</h3>
+        <h3 class="fw-normal" id="namepr{{book.0.book_id}}">{{book.0.book_name}}</h3>
         <p>Book ISBN-{{book.0.book_isbn}}</p>
         <p style="margin-top:-10px">Publishing Date-{{book.0.pub_date}}</p>
         <p style="margin-top:-10px">{{book.0.book_des}}</p>
         <p style="margin-top:-10px">Rental Price-{{book.0.book_price}}Rs./Day</p>
-        <p><a class="btn btn-secondary" href="#">Buy On Rent &raquo;</a></p>
+        <span id="divpr{{book.0.book_id}}" class="divpr">
+        <p><button id="pr{{book.0.book_id}}" class="btn btn-secondary cart">Buy On Rent &raquo;</button></p>
+        </span>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
           <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><img src='/media/{{book.1.image}}' class="img-thumbnail rounded mx-auto d-block" style="margin-top:-120px;height:272px;width:202px" alt="..."></svg>
-        <h3 class="fw-normal">{{book.1.book_name}}</h3>
+        <h3 class="fw-normal" id="namepr{{book.1.book_id}}">{{book.1.book_name}}</h3>
         <p>Book ISBN-{{book.1.book_isbn}}</p>
         <p style="margin-top:-10px">Publishing Date-{{book.1.pub_date}}</p>
         <p style="margin-top:-10px">{{book.1.book_des}}</p>
         <p style="margin-top:-10px">Rental Price-{{book.1.book_price}}Rs./Day</p>
-        <p><a class="btn btn-secondary" href="#">Buy On Rent &raquo;</a></p>
+        <span id="divpr{{book.1.book_id}}" class="divpr">
+        <p><button id="pr{{book.1.book_id}}" class="btn btn-secondary cart">Buy On Rent &raquo;</button></p>
+      </span>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
         <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><img src='/media/{{book.2.image}}' class="img-thumbnail rounded mx-auto d-block" style="margin-top:-120px;height:272px;width:202px" alt="..."></svg>
-        <h3 class="fw-normal">{{book.2.book_name}}</h3>
+        <h3 class="fw-normal" id="namepr{{book.2.book_id}}">{{book.2.book_name}}</h3>
         <p>Book ISBN-{{book.2.book_isbn}}</p>
         <p style="margin-top:-10px">Publishing Date-{{book.2.pub_date}}</p>
         <p style="margin-top:-10px">{{book.2.book_des}}</p>
         <p style="margin-top:-10px">Rental Price-{{book.2.book_price}}Rs./Day</p>
-        <p><a class="btn btn-secondary" href="#">Buy On Rent &raquo;</a></p>
+        <span id="divpr{{book.2.book_id}}" class="divpr">
+        <p><button id="pr{{book.2.book_id}}" class="btn btn-secondary cart">Buy On Rent &raquo;</button></p>
+      </span>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
 
@@ -128,7 +134,7 @@
       <div class="col-md-7">
         <h2 class="featurette-heading fw-normal lh-1">Science Books. <span class="text-muted">Books For The Science Students</span></h2>
         <p class="lead">Quantum Physics,Organic Chemistry,Biology And Many More...</p>
-        <p><a class="btn btn-primary" href="#">Explore More &raquo;</a></p>
+        <p><a class="btn btn-primary" href="/mng">Explore More &raquo;</a></p>
       </div>
       <div class="col-md-5">
         <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="/static/science.jpg" style="margin-top:-500px;height:400px;width:500px"></svg>
@@ -143,3 +149,42 @@
   </div><!-- /.container -->
 </main>
 {%endblock body%}
+{% block js %}
+<script>
+  if(localStorage.getItem('cart')==null)
+  {
+    var cart={};
+  }
+  else
+  {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    updateCart(cart);
+  }
+  $('.divpr').on('click', 'button.cart', function() {
+    var idstr=this.id.toString();
+    if(cart[idstr]!=undefined)
+    {
+      qty=cart[idstr][0]+1;
+      console.log(cart)
+    }
+    else
+    {
+      qty=1;
+      name=document.getElementById('name'+idstr).innerHTML;
+      cart[idstr]=[qty,name];
+      console.log(cart)
+    }
+    updateCart(cart);
+  });
+  function updateCart(cart)
+  {
+    var sum=0;
+    for(var item in cart)
+    {
+      sum=sum+cart[item][0];
+    }
+    localStorage.setItem('cart',JSON.stringify(cart));
+    document.getElementById('cart').innerHTML=sum;
+  }
+</script>
+{% endblock %}

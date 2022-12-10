@@ -1,7 +1,8 @@
 import email
+import random
 from telnetlib import LOGOUT
-from django.shortcuts import render,HttpResponse,redirect
-from django.urls import reverse_lazy
+from django.shortcuts import render,HttpResponse,redirect,HttpResponseRedirect
+from django.urls import reverse_lazy,reverse
 from django.views import generic
 from django.contrib import auth
 from App_1.models import Contact
@@ -9,6 +10,8 @@ from django.contrib import messages #For displaying message alert
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from .models import Book
+from .models import Order
+from django.utils.translation import gettext
 from django.contrib.auth import get_user_model
 from django.conf.urls.static import static 
 User = get_user_model()
@@ -21,6 +24,8 @@ def index(request):
     return render(request,'index.html',params)
 def about(request):
     return render(request,'about.html')
+def about_admin(request):
+    return render(request,'about_admin.html')
 def add_book(request):
     if request.method=="POST":
         book_isbn=request.POST.get('book_isbn')
@@ -31,7 +36,6 @@ def add_book(request):
         image=request.FILES['image']
         add_book=Book(book_isbn=book_isbn,book_name=book_name,pub_date=pub_date,book_price=book_price,book_des=book_des,image=image) #creating object of contact
         add_book.save() #saving all the info
-        messages.success(request, 'Your form has been sent successfully!')
     return render(request,'add_book.html')
 def admin_main(request):
     return render(request,'admin_main.html')
@@ -116,4 +120,52 @@ def agriculture(request):
 def architectural(request):
     return render(request,'arc.html')
 def management(request):
-    return render(request,'mng.html')
+    books=Book.objects.all()
+    print(books)
+    params={'book':books}
+    return render(request,'mng.html',params)
+def checkout(request,):
+    id=random.randint(100000,1000000)
+    if request.method=="POST":
+            cust_name=request.POST.get('fname')
+            cust_email=request.POST.get('your_email')
+            cust_phone=request.POST.get('your_phone')
+            cust_date=request.POST.get('pub_date')
+            days=request.POST.get('your_days')
+            order_1=Order(cust_name=cust_name,cust_email=cust_email,cust_date=cust_date,cust_phone=cust_phone,days=days)
+            order_1.save()
+            messages.success(request, 'Your Order has been confirmed!')
+    return render(request,'checkout.html')
+def return_1(request):
+    if request.method=="POST":
+        messages.success(request, 'Your form has been sent successfully!')
+    return render(request,'return_1.html')
+def show_books(request):
+    books=Book.objects.all()
+    print(books)
+    n=len(books)
+    params={'no_of_slides':n,'range':range(1,n),'book':books}
+    return render(request,'show_books.html',params)
+def show_books_admin(request):
+    books=Book.objects.all()
+    print(books)
+    n=len(books)
+    params={'no_of_slides':n,'range':range(1,n),'book':books}
+    return render(request,'show_books_admin.html',params)
+def remove(request):
+    books=Book.objects.all()
+    print(books)
+    n=len(books)
+    params={'no_of_slides':n,'range':range(1,n),'book':books}
+    return render(request,'remove.html',params)
+def delete(request, book_id):
+    books=Book.objects.get(book_id=book_id)
+    books.delete()
+    return render(request,'delete.html')
+def cnf_order(request, book_price,days):
+    orders=Book.objects.get(book_price=book_price)
+    rents=Order.objects.get(days=days)
+    totals=orders*rents
+    params={'total':totals}
+    return render(request,'cnf_order.html',params)
+

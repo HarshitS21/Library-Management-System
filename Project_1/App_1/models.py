@@ -1,5 +1,6 @@
 import email
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.forms import CharField, EmailField, IntegerField
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
@@ -23,6 +24,7 @@ class Contact(models.Model): # So let,s understand what is happening here.So whe
     def __str__(self): #this function we used for save details by name in database
         return self.name
 class Book(models.Model):
+    book_id=models.AutoField(primary_key=True,unique=True)
     book_isbn=models.CharField(max_length=10)
     book_name=models.CharField(max_length=100)
     pub_date=models.DateField()
@@ -30,5 +32,25 @@ class Book(models.Model):
     book_des=models.CharField(max_length=100,default="")
     image=models.ImageField(upload_to='images',default="")
 
-    def __str__(self): #this function we used for save details by name in database
+    def __str__(self): #this function we used for save details by name in databas
         return self.book_name
+class Order(models.Model):
+    cust_name=models.CharField(max_length=100)
+    cust_phone=models.IntegerField()
+    cust_email=models.EmailField(max_length=120)
+    cust_date=models.DateField()
+    days=models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(60)])
+
+    def __str__(self): #this function we used for save details by name in databas
+        return self.cust_name
+class Return1(models.Model):
+    cust1_name=models.CharField(max_length=100)
+    cust1_email=models.EmailField(max_length=120)
+    cust1_phone=models.IntegerField()
+    ret_book_name=models.CharField(max_length=100)  
+    ret_date=models.DateField()
+
+    def __str__(self):
+        return self.cust1_name
+    
+

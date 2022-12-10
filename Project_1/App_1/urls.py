@@ -19,4 +19,12 @@ urlpatterns = [
     path('mng',views.management),
     path('arc',views.architectural),
     path('add_book',views.add_book),
+    path('checkout',views.checkout),
+    path('return_1',views.return_1),
+    path('show_books',views.show_books),
+    path('show_books_admin',views.show_books_admin),
+    path('remove', views.remove),
+    path('delete/<int:book_id>', views.delete, name='delete'),
+    path('about_admin', views.about_admin),
+    path('cnf_order/<int:book_price>,<int:days>',views.cnf_order),
 ]
