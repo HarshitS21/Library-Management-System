@@ -55,13 +55,19 @@
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                          <input type="text" id="your_days" name="your_days" class="form-control" />
-                          <label class="form-label" for="your_days">No. Of Total Days</label>
+                          <input type="phone" id="your_days" name="your_days" class="form-control" />
+                          <label class="form-label" for="your_days">Total No. Of Days,You Keep The Book</label>
+                        </div>
+                      </div>
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <label class="form-label text-center" style="color:#0c264f;" for="your_days">Per Day Total Rent Is:<span id="totalprice"></span></label>
                         </div>
                       </div>
     
                       <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4 cart1">
-                        <a href="cnf-order/{{book_price}},{{days}}"><button type="submit" class="btn btn-primary btn-lg">Confirm Order</button><a>
+                        <a><button type="submit" class="btn btn-primary btn-lg">Confirm Order</button><a>
                       </div>
     
                     </form>
@@ -99,6 +105,7 @@
     cart=JSON.parse(localStorage.getItem('cart'));
   }
 var sum = 0;
+var totalprice = 0;
 if ($.isEmptyObject(cart))
 {
     //if object is empty
@@ -107,14 +114,17 @@ if ($.isEmptyObject(cart))
 }
 for(item in cart)
 {
+  let itemprice=cart[item][2];
   let name=cart[item][1];
   let qty=cart[item][0];
   sum=sum+qty;
+  totalprice=totalprice+qty*itemprice;
   mystr=`<center><li class="list-group-item col-sm-3 text-center" style="background-color: black; color: white;">${name}</li></center><br>`
   $('#items').append(mystr);
   console.log(cart);
 }
 document.getElementById('cart').innerHTML=sum;
+document.getElementById('totalprice').innerHTML=totalprice;
   $('.cart1').click(function()
   {
     cart=JSON.parse(localStorage.getItem('cart'));

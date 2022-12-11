@@ -11,6 +11,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from .models import Book
 from .models import Order
+from .models import Return1
 from django.utils.translation import gettext
 from django.contrib.auth import get_user_model
 from django.conf.urls.static import static 
@@ -124,8 +125,11 @@ def management(request):
     print(books)
     params={'book':books}
     return render(request,'mng.html',params)
-def checkout(request,):
+def checkout(request):
     id=random.randint(100000,1000000)
+    books=Book.objects.all()
+    orders=Order.objects.all()
+    params={'book':books,'order':orders}
     if request.method=="POST":
             cust_name=request.POST.get('fname')
             cust_email=request.POST.get('your_email')
@@ -135,10 +139,17 @@ def checkout(request,):
             order_1=Order(cust_name=cust_name,cust_email=cust_email,cust_date=cust_date,cust_phone=cust_phone,days=days)
             order_1.save()
             messages.success(request, 'Your Order has been confirmed!')
-    return render(request,'checkout.html')
+    return render(request,'checkout.html',params)
 def return_1(request):
     if request.method=="POST":
-        messages.success(request, 'Your form has been sent successfully!')
+        cust1_name=request.POST.get('cust1_name')
+        cust1_email=request.POST.get('cust1_email')
+        cust1_phone=request.POST.get('cust1_phone')
+        ret_book_name=request.POST.get('ret_book_name')
+        ret_date=request.POST.get('ret_date')
+        return_order=Return1(cust1_name=cust1_name,cust1_email=cust1_email,cust1_phone=cust1_phone,ret_book_name=ret_book_name,ret_date=ret_date)
+        return_order.save()
+        messages.success(request, 'Book Returned Successfully!')
     return render(request,'return_1.html')
 def show_books(request):
     books=Book.objects.all()
@@ -163,9 +174,10 @@ def delete(request, book_id):
     books.delete()
     return render(request,'delete.html')
 def cnf_order(request, book_price,days):
-    orders=Book.objects.get(book_price=book_price)
-    rents=Order.objects.get(days=days)
-    totals=orders*rents
-    params={'total':totals}
-    return render(request,'cnf_order.html',params)
-
+    return render(request,'cnf_order.html')
+def search(request):
+    query=request.GET['query']
+    allbooks=Book.objects.filter(book_name__icontains=query)
+    n=len(allbooks)
+    params={'slides':n,'allbooks':allbooks,'range':range(0,n)}
+    return render(request,'search.html',params)

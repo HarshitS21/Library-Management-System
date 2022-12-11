@@ -12,7 +12,7 @@
           <p>Book ISBN-{{book.9.book_isbn}}</p>
           <p style="margin-top:-10px">Publishing Date-{{book.9.pub_date}}</p>
           <p style="margin-top:-10px">{{book.9.book_des}}</p>
-          <p style="margin-top:-10px">Rental Price-{{book.9.book_price}}Rs./Day</p>
+          <p style="margin-top:-10px">Rental Price-<span id="pricepr{{book.9.book_id}}">{{book.9.book_price}}<span>Rs./Day</p>
           <span id="divpr{{book.9.book_id}}" class="divpr">
           <p><button id="pr{{book.9.book_id}}" class="btn btn-secondary cart">Buy On Rent &raquo;</button></p>
           </span>
@@ -23,7 +23,7 @@
           <p>Book ISBN-{{book.10.book_isbn}}</p>
           <p style="margin-top:-10px">Publishing Date-{{book.10.pub_date}}</p>
           <p style="margin-top:-10px">{{book.10.book_des}}</p>
-          <p style="margin-top:-10px">Rental Price-{{book.10.book_price}}Rs./Day</p>
+          <p style="margin-top:-10px">Rental Price-<span id="pricepr{{book.10.book_id}}">{{book.10.book_price}}<span>Rs./Day</p>
           <span id="divpr{{book.10.book_id}}" class="divpr">
           <p><button id="pr{{book.10.book_id}}" class="btn btn-secondary cart">Buy On Rent &raquo;</button></p>
           </span>
@@ -34,7 +34,7 @@
           <p>Book ISBN-{{book.11.book_isbn}}</p>
           <p style="margin-top:-10px">Publishing Date-{{book.11.pub_date}}</p>
           <p style="margin-top:-10px">{{book.11.book_des}}</p>
-          <p style="margin-top:-10px">Rental Price-{{book.11.book_price}}Rs./Day</p>
+          <p style="margin-top:-10px">Rental Price-<span id="pricepr{{book.11.book_id}}">{{book.11.book_price}}<span>Rs./Day</p>
           <span id="divpr{{book.11.book_id}}" class="divpr">
           <p><button id="pr{{book.11.book_id}}" class="btn btn-secondary cart">Buy On Rent &raquo;</button></p>
           </span>
@@ -48,7 +48,7 @@
           <p>Book ISBN-{{book.7.book_isbn}}</p>
           <p style="margin-top:-10px">Publishing Date-{{book.7.pub_date}}</p>
           <p style="margin-top:-10px">{{book.7.book_des}}</p>
-          <p style="margin-top:-10px">Rental Price-{{book.7.book_price}}Rs./Day</p>
+          <p style="margin-top:-10px">Rental Price-<span id="pricepr{{book.7.book_id}}">{{book.7.book_price}}<span>Rs./Day</p>
           <span id="divpr{{book.7.book_id}}" class="divpr">
           <p><button id="pr{{book.7.book_id}}" class="btn btn-secondary cart">Buy On Rent &raquo;</button></p>
           </span>
@@ -59,7 +59,7 @@
           <p>Book ISBN-{{book.6.book_isbn}}</p>
           <p style="margin-top:-10px">Publishing Date-{{book.6.pub_date}}</p>
           <p style="margin-top:-10px">{{book.6.book_des}}</p>
-          <p style="margin-top:-10px">Rental Price-{{book.6.book_price}}Rs./Day</p>
+          <p style="margin-top:-10px">Rental Price-<span id="pricepr{{book.6.book_id}}">{{book.6.book_price}}<span>Rs./Day</p>
           <span id="divpr{{book.6.book_id}}" class="divpr">
           <p><button id="pr{{book.6.book_id}}" class="btn btn-secondary cart">Buy On Rent &raquo;</button></p>
           </span>
@@ -70,7 +70,7 @@
           <p>Book ISBN-{{book.8.book_isbn}}</p>
           <p style="margin-top:-10px">Publishing Date-{{book.8.pub_date}}</p>
           <p style="margin-top:-10px">{{book.8.book_des}}</p>
-          <p style="margin-top:-10px">Rental Price-{{book.8.book_price}}Rs./Day</p>
+          <p style="margin-top:-10px">Rental Price-<span id="pricepr{{book.8.book_id}}">{{book.8.book_price}}<span>Rs./Day</p>
           <span id="divpr{{book.8.book_id}}" class="divpr">
           <p><button id="pr{{book.8.book_id}}" class="btn btn-secondary cart">Buy On Rent &raquo;</button></p>
           </span>
@@ -100,7 +100,8 @@
     {
       qty=1;
       name=document.getElementById('name'+idstr).innerHTML;
-      cart[idstr]=[qty,name];
+      price=document.getElementById('price'+idstr).innerHTML;
+      cart[idstr]=[qty,name,parseInt(price)];
       console.log(cart)
     }
     updateCart(cart);

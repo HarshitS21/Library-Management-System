@@ -35,10 +35,10 @@ class Book(models.Model):
     def __str__(self): #this function we used for save details by name in databas
         return self.book_name
 class Order(models.Model):
-    cust_name=models.CharField(max_length=100)
+    cust_name=models.CharField(max_length=100,null=True)
     cust_phone=models.IntegerField()
     cust_email=models.EmailField(max_length=120)
-    cust_date=models.DateField()
+    cust_date=models.DateField(null=True)
     days=models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(60)])
 
     def __str__(self): #this function we used for save details by name in databas
@@ -46,7 +46,7 @@ class Order(models.Model):
 class Return1(models.Model):
     cust1_name=models.CharField(max_length=100)
     cust1_email=models.EmailField(max_length=120)
-    cust1_phone=models.IntegerField()
+    cust1_phone=models.IntegerField(blank=True,null=True)
     ret_book_name=models.CharField(max_length=100)  
     ret_date=models.DateField()
 

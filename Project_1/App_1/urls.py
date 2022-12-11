@@ -26,5 +26,6 @@ urlpatterns = [
     path('remove', views.remove),
     path('delete/<int:book_id>', views.delete, name='delete'),
     path('about_admin', views.about_admin),
-    path('cnf_order/<int:book_price>,<int:days>',views.cnf_order),
+    path('cnf_order',views.cnf_order),
+    path('search',views.search),
 ]
