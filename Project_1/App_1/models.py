@@ -42,7 +42,7 @@ class Order(models.Model):
     days=models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(60)])
 
     def __str__(self): #this function we used for save details by name in databas
-        return self.cust_name
+        return self.cust_email
 class Return1(models.Model):
     cust1_name=models.CharField(max_length=100)
     cust1_email=models.EmailField(max_length=120)

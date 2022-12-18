@@ -129,16 +129,16 @@ def checkout(request):
     id=random.randint(100000,1000000)
     books=Book.objects.all()
     orders=Order.objects.all()
-    params={'book':books,'order':orders}
+    params={'book':books,'order':orders,'id':id}
     if request.method=="POST":
-            cust_name=request.POST.get('fname')
+            cust_name=request.POST.get('your_name')
             cust_email=request.POST.get('your_email')
             cust_phone=request.POST.get('your_phone')
             cust_date=request.POST.get('pub_date')
             days=request.POST.get('your_days')
             order_1=Order(cust_name=cust_name,cust_email=cust_email,cust_date=cust_date,cust_phone=cust_phone,days=days)
             order_1.save()
-            messages.success(request, 'Your Order has been confirmed!')
+            return render(request,'cnf_order.html',params)
     return render(request,'checkout.html',params)
 def return_1(request):
     if request.method=="POST":
